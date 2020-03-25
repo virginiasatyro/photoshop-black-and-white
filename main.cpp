@@ -18,6 +18,7 @@ int main()
     cout << "Image type: " << color_image.get_type_ascii() << endl;
     cout << "Image width: " << color_image.get_width() << endl;
     cout << "Image height: " << color_image.get_height() << endl;
+    cout << "Image color scale: " << color_image.get_color_scale() << endl;
     cout << endl;
 
     return 0;

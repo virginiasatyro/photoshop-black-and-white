@@ -11,8 +11,6 @@
 
 using namespace std;
 
-void set_image_info(int aux, string line);
-
 // constructor 
 Image::Image()
 {
@@ -43,6 +41,12 @@ void Image::set_height(unsigned int height)
     this->height = height;
 }
 
+// set image color scale
+void Image::set_color_scale(unsigned int color_scale)
+{
+    this->color_scale = color_scale;
+}
+
 // get the type ascii (P2 or P3)
 string Image::get_type_ascii()
 {
@@ -59,6 +63,12 @@ unsigned int Image::get_height()
 unsigned int Image::get_width()
 {
     return width;
+}
+
+// get image color scale
+unsigned int Image::get_color_scale()
+{
+    return color_scale;
 }
 
 // reads image file .ppm
@@ -89,9 +99,12 @@ void Image::set_image_info(int aux, string line)
     switch(aux)
     {
         case 1: 
+        {
             set_type_ascii(line);
             break;
+        }
         case 2:
+        {
             stringstream ss(line);
             string token;
             int i = 0;
@@ -102,5 +115,11 @@ void Image::set_image_info(int aux, string line)
                 i++;
             }
             break;
+        }
+        case 3:
+        {
+            set_color_scale(atoi(line.c_str()));
+            break;
+        }
     }
 }
