@@ -92,16 +92,14 @@ void Image::set_image_info(int aux, string line)
             set_type_ascii(line);
             break;
         case 2:
-            cout << "Case 2: " << line << endl;
             stringstream ss(line);
             string token;
-            //int i = 0;
+            int i = 0;
             while(getline(ss, token, ' '))
             {
-                cout << "Token: " << token << endl; 
-                // if(i == 0) set_width(atoi(token));
-                // if(i == 1) set_height(atoi(token));
-                //i++;
+                if(i == 0) set_width(atoi(token.c_str()));
+                if(i == 1) set_height(atoi(token.c_str()));
+                i++;
             }
             break;
     }

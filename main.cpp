@@ -14,7 +14,11 @@ int main()
 
     color_image.read_image();
 
+    cout << "\nmain()" << endl;
     cout << "Image type: " << color_image.get_type_ascii() << endl;
+    cout << "Image width: " << color_image.get_width() << endl;
+    cout << "Image height: " << color_image.get_height() << endl;
+    cout << endl;
 
     return 0;
 }
