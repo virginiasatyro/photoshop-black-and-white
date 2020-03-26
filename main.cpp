@@ -30,7 +30,7 @@ int main()
     cout << "Image color scale black_image: " << black_image.get_color_scale() << endl;
     cout << endl;
 
-    black_image.write_image(black_image.get_type_ascii(), black_image.get_width(), black_image.get_height(), black_image.get_color_scale());
+    black_image.write_image();
 
     return 0;
 }

@@ -95,7 +95,8 @@ void Image::read_image()
             cout << line << endl;
             i++;
             set_image_info(i, line);
-            if(i >= 3)
+
+            if(i >= 4)
                 break;
         }
         my_image.close();
@@ -134,14 +135,15 @@ void Image::set_image_info(int aux, string line)
     }
 }
 
-void Image::write_image(string type_ascii, unsigned int width, unsigned int height, unsigned int color_scale)
+void Image::write_image()
 {
     ofstream my_image(OUTPUT_FILE);
     if(my_image.is_open())
     {
-        my_image << type_ascii << endl;
-        my_image << to_string(width) << " " << to_string(height) << endl;
-        my_image << to_string(color_scale) << endl; 
+        my_image << this->type_ascii << endl;
+        my_image << to_string(this->width) << " " << to_string(this->height) << endl;
+        my_image << to_string(this->color_scale) << endl; 
+
         my_image.close();
     }
     else

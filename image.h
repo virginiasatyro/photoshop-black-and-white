@@ -39,7 +39,7 @@ public:
     unsigned int get_color_scale();
 
     void read_image();
-    void write_image(string type_ascii, unsigned int width, unsigned int height, unsigned int color_scale);
+    void write_image();
 };
 
 #endif // _IMAGE_H
