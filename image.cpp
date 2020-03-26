@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator> 
-#include <sstream>
+#include <sstream> 
 
 #include "image.h"
 #include "aux_function.h"
@@ -15,6 +15,16 @@ using namespace std;
 Image::Image()
 {
     cout << "New image created!" << endl;
+}
+
+Image:: Image(unsigned int width, unsigned int height)
+{
+    cout << "New image created!" << endl;
+
+    this->width = width;
+    this->height = height;
+    this->type_ascii = BLACK_IMG_TYPE;
+    this->color_scale = SCALE;
 }
 
 // destructor
@@ -121,5 +131,21 @@ void Image::set_image_info(int aux, string line)
             set_color_scale(atoi(line.c_str()));
             break;
         }
+    }
+}
+
+void Image::write_image(string type_ascii, unsigned int width, unsigned int height, unsigned int color_scale)
+{
+    ofstream my_image(OUTPUT_FILE);
+    if(my_image.is_open())
+    {
+        my_image << type_ascii << endl;
+        my_image << to_string(width) << " " << to_string(height) << endl;
+        my_image << to_string(color_scale) << endl; 
+        my_image.close();
+    }
+    else
+    {
+        cout << "Unable to open file!" << endl;
     }
 }

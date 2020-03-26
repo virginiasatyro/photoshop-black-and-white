@@ -3,6 +3,10 @@
 
 #include <string>
 
+#define SCALE 49
+#define BLACK_IMG_TYPE "P2"
+#define OUTPUT_FILE "mineirao.pgm"
+
 using namespace std;
 
 class Image
@@ -16,6 +20,7 @@ private:
 public:
     // constructor
     Image();
+    Image(unsigned int width, unsigned int height);
 
     // destructor
     ~Image();
@@ -34,6 +39,7 @@ public:
     unsigned int get_color_scale();
 
     void read_image();
+    void write_image(string type_ascii, unsigned int width, unsigned int height, unsigned int color_scale);
 };
 
 #endif // _IMAGE_H
