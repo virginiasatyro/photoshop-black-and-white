@@ -7,7 +7,6 @@
 #include <sstream> 
 
 #include "image.h"
-#include "aux_function.h"
 
 using namespace std;
 
@@ -85,7 +84,7 @@ unsigned int Image::get_color_scale()
 void Image::read_image()
 {
     string line;
-    ifstream my_image("mineirao.ppm");
+    ifstream my_image(INPUT_FILE);
 
     if(my_image.is_open())
     {
@@ -103,6 +102,8 @@ void Image::read_image()
     }
     else
         cout << "Unable to open file!" << endl;
+
+    alocate_data_map();
 }
 
 void Image::set_image_info(int aux, string line)
@@ -151,3 +152,17 @@ void Image::write_image()
         cout << "Unable to open file!" << endl;
     }
 }
+
+void Image::alocate_data_map()
+{
+    int **data_map;
+
+    // data_map = malloc(this->width * sizeof(int *) * 3);
+
+    // for(int i = 0; i < )
+}
+
+// void print_data_map()
+// {
+
+// }

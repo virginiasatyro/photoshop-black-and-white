@@ -5,6 +5,7 @@
 
 #define SCALE 49
 #define BLACK_IMG_TYPE "P2"
+#define INPUT_FILE "exemple.ppm"
 #define OUTPUT_FILE "mineirao.pgm"
 
 using namespace std;
@@ -16,6 +17,7 @@ private:
     unsigned int width; // linha 
     unsigned int height; // coluna 
     unsigned int color_scale; // 255
+    int **data_map;
 
 public:
     // constructor
@@ -40,6 +42,8 @@ public:
 
     void read_image();
     void write_image();
+    void alocate_data_map();
+    void print_data_map();
 };
 
 #endif // _IMAGE_H
