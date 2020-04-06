@@ -80,31 +80,31 @@ unsigned int Image::get_color_scale()
     return color_scale;
 }
 
-// reads image file .ppm
-void Image::read_image()
-{
-    string line;
-    ifstream my_image(INPUT_FILE);
+// // reads image file .ppm
+// void Image::read_image()
+// {
+//     string line;
+//     ifstream my_image(INPUT_FILE);
 
-    if(my_image.is_open())
-    {
-        int i = 0;
-        while(getline(my_image, line))
-        {
-            cout << line << endl;
-            i++;
-            set_image_info(i, line);
+//     if(my_image.is_open())
+//     {
+//         int i = 0;
+//         while(getline(my_image, line))
+//         {
+//             cout << line << endl;
+//             i++;
+//             set_image_info(i, line);
 
-            if(i >= 4)
-                break;
-        }
-        my_image.close();
-    }
-    else
-        cout << "Unable to open file!" << endl;
+//             if(i >= 4)
+//                 break;
+//         }
+//         my_image.close();
+//     }
+//     else
+//         cout << "Unable to open file!" << endl;
 
-    alocate_data_map();
-}
+//     alocate_data_map();
+// }
 
 void Image::set_image_info(int aux, string line)
 {
@@ -166,3 +166,40 @@ void Image::alocate_data_map()
 // {
 
 // }
+
+void Image::read_image()
+{
+    ifstream fp(INPUT_FILE);
+
+    if(fp.fail())
+        return;
+
+    string image_type_str, width_str, height_str, range_str;
+    fp >> image_type_str;
+
+    fp >> width_str >> height_str >> range_str;
+
+    set_type_ascii(image_type_str);
+    set_width(atoi(width_str.c_str()));
+    set_height(atoi(height_str.c_str()));
+    set_color_scale(atoi(range_str.c_str()));
+
+    // read the values into tha vector directly 
+    RGB tmp;
+    string r, g, b;
+    for(int i = 0; i < get_width() * get_height(); i++)
+    {
+        fp >> r >> g >> b;
+        tmp._red = atoi(r.c_str());
+        tmp._green = atoi(g.c_str());
+        tmp._blue = atoi(b.c_str());
+
+        pixels.push_back(tmp);
+    }
+    fp.close();
+}
+
+RGB& Image::get(unsigned int a, unsigned int b)
+{
+    return pixels[(b * width) + a];
+}

@@ -2,6 +2,7 @@
 #define _IMAGE_H
 
 #include <string>
+#include <vector>
 
 #define SCALE 49
 #define BLACK_IMG_TYPE "P2"
@@ -10,6 +11,13 @@
 
 using namespace std;
 
+struct RGB
+{
+    unsigned char _red, _green, _blue;
+    // constructor set r, g, b to 0 automatically
+    RGB(): _red(0), _green(0), _blue(0) {};
+};
+
 class Image
 {
 private:
@@ -17,7 +25,8 @@ private:
     unsigned int width; // linha 
     unsigned int height; // coluna 
     unsigned int color_scale; // 255
-    int **data_map;
+   // int **data_map;
+    vector<RGB> pixels;
 
 public:
     // constructor
@@ -43,7 +52,9 @@ public:
     void read_image();
     void write_image();
     void alocate_data_map();
-    void print_data_map();
+    void print_data_map(unsigned int, unsigned int);
+
+    RGB& get(unsigned int, unsigned int);
 };
 
 #endif // _IMAGE_H

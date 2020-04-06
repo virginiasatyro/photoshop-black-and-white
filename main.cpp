@@ -32,5 +32,14 @@ int main()
 
     black_image.write_image();
 
+    for(unsigned int b = 0; b < color_image.get_height(); b++)
+    {
+        for(unsigned int a = 0; a < color_image.get_width(); a++)
+        {
+            RGB& ref_color = color_image.get(a, b);
+            cout << "RGB {" << (int)ref_color._red << ", " << (int)ref_color._green << ", " << (int)ref_color._blue << "}" << endl;
+        }
+    }
+
     return 0;
 }
